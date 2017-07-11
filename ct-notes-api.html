@@ -1,0 +1,24 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../ct-core-utils/ct-api-provider-behaviour.html">
+
+<dom-module id="ct-notes-api">
+  <template>
+    <iron-ajax id="deleteNote"></iron-ajax>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'ct-notes-api',
+      behaviors: [CT.Behaviours.ApiProvider],
+
+      deleteNote: function(id) {
+        this.$.deleteNote.url = this._url('/notes/'+id);
+        this.$.deleteNote.method = 'DELETE';
+        return this._generateRequest(this.$.deleteNote);
+      },
+
+    });
+  </script>
+</dom-module>
